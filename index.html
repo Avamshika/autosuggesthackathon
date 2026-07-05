@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Result Analyzer Dashboard</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="container">
+
+    <div class="title">
+        <h1><i class="fa-solid fa-graduation-cap"></i> Student Result Analyzer</h1>
+        <p>Smart Academic Performance Dashboard</p>
+    </div>
+
+    <!-- Student Details -->
+
+    <div class="card">
+
+        <h2>Student Details</h2>
+
+        <div class="input-grid">
+
+            <div>
+                <label>Name</label>
+                <input type="text" id="name" placeholder="Enter Student Name">
+            </div>
+
+            <div>
+                <label>Roll Number</label>
+                <input type="text" id="roll" placeholder="22A91A0501">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Subject Marks -->
+
+    <div class="card">
+
+        <h2>Subject Marks</h2>
+
+        <div class="subjects">
+
+            <div class="subject">
+                <label>Mathematics</label>
+                <input type="number" id="math" placeholder="0-100">
+            </div>
+
+            <div class="subject">
+                <label>Science</label>
+                <input type="number" id="science" placeholder="0-100">
+            </div>
+
+            <div class="subject">
+                <label>English</label>
+                <input type="number" id="english" placeholder="0-100">
+            </div>
+
+            <div class="subject">
+                <label>Computer</label>
+                <input type="number" id="computer" placeholder="0-100">
+            </div>
+
+            <div class="subject">
+                <label>Social</label>
+                <input type="number" id="social" placeholder="0-100">
+            </div>
+
+        </div>
+
+    </div>
+
+    <button onclick="calculateResult()">
+        <i class="fa-solid fa-chart-line"></i>
+        Analyze Result
+    </button>
+
+    <!-- Dashboard -->
+
+    <div class="dashboard" id="dashboard">
+
+        <!-- Student Card -->
+
+        <div class="profile-card">
+
+            <div class="avatar">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+
+            <h2 id="studentName"></h2>
+
+            <p id="studentRoll"></p>
+
+            <span id="status" class="badge"></span>
+
+        </div>
+
+        <!-- Statistics -->
+
+        <div class="stats">
+
+            <div class="box">
+                <i class="fa-solid fa-book"></i>
+                <h3>Total</h3>
+                <h2 id="total"></h2>
+            </div>
+
+            <div class="box">
+                <i class="fa-solid fa-percent"></i>
+                <h3>Percentage</h3>
+                <h2 id="percentage"></h2>
+            </div>
+
+            <div class="box">
+                <i class="fa-solid fa-ranking-star"></i>
+                <h3>Grade</h3>
+                <h2 id="grade"></h2>
+            </div>
+
+            <div class="box">
+                <i class="fa-solid fa-chart-simple"></i>
+                <h3>Average</h3>
+                <h2 id="average"></h2>
+            </div>
+
+        </div>
+
+        <!-- Circular Progress -->
+
+        <div class="progress-card">
+
+            <div class="circle">
+
+                <svg width="220" height="220">
+
+                    <circle
+                        cx="110"
+                        cy="110"
+                        r="90"
+                        class="bg">
+                    </circle>
+
+                    <circle
+                        cx="110"
+                        cy="110"
+                        r="90"
+                        class="progress"
+                        id="circle">
+                    </circle>
+
+                </svg>
+
+                <div class="number">
+                    <span id="circleValue">0%</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Subject Performance -->
+
+        <div class="performance">
+
+            <h2>Subject Performance</h2>
+
+            <div class="subject-result">
+
+                <span>Mathematics</span>
+
+                <div class="bar">
+                    <div class="fill" id="mathBar"></div>
+                </div>
+
+                <span id="mathValue"></span>
+
+            </div>
+
+            <div class="subject-result">
+
+                <span>Science</span>
+
+                <div class="bar">
+                    <div class="fill" id="scienceBar"></div>
+                </div>
+
+                <span id="scienceValue"></span>
+
+            </div>
+
+            <div class="subject-result">
+
+                <span>English</span>
+
+                <div class="bar">
+                    <div class="fill" id="englishBar"></div>
+                </div>
+
+                <span id="englishValue"></span>
+
+            </div>
+
+            <div class="subject-result">
+
+                <span>Computer</span>
+
+                <div class="bar">
+                    <div class="fill" id="computerBar"></div>
+                </div>
+
+                <span id="computerValue"></span>
+
+            </div>
+
+            <div class="subject-result">
+
+                <span>Social</span>
+
+                <div class="bar">
+                    <div class="fill" id="socialBar"></div>
+                </div>
+
+                <span id="socialValue"></span>
+
+            </div>
+
+        </div>
+
+        <!-- AI Analysis -->
+
+        <div class="analysis">
+
+            <h2>
+                <i class="fa-solid fa-robot"></i>
+                AI Performance Analysis
+            </h2>
+
+            <p id="analysisText">
+
+            </p>
+
+        </div>
+
+        <!-- Achievement -->
+
+        <div class="achievement">
+
+            <h2>
+                <i class="fa-solid fa-trophy"></i>
+                Achievement
+            </h2>
+
+            <h3 id="achievementText"></h3>
+
+        </div>
+
+        <!-- Motivation -->
+
+        <div class="quote">
+
+            <h2>
+                <i class="fa-solid fa-lightbulb"></i>
+                Motivation
+            </h2>
+
+            <p id="quoteText"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
